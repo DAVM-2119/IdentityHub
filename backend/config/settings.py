@@ -32,8 +32,9 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
-    ".onrender.com",
+    "identityhub-5ygq.onrender.com",
 ]
+
 
 
 # --------------------------------------------------
@@ -42,7 +43,6 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
 
-    # Django Apps
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -50,12 +50,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    # Sites
     "django.contrib.sites",
 
 
-    # Third Party
+    # Third party
     "rest_framework",
+
     "rest_framework.authtoken",
 
     "rest_framework_simplejwt.token_blacklist",
@@ -67,13 +67,17 @@ INSTALLED_APPS = [
     "dj_rest_auth",
 
     "allauth",
+
     "allauth.account",
+
     "allauth.socialaccount",
+
     "allauth.socialaccount.providers.google",
 
 
-    # Local Apps
+    # Local
     "users",
+
 ]
 
 
@@ -157,8 +161,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 # --------------------------------------------------
 # DATABASE
-# SQLite for personal Render deployment
-# Later migrate to PostgreSQL
+# SQLite for personal deployment
 # --------------------------------------------------
 
 DATABASES = {
@@ -262,7 +265,7 @@ SIMPLE_JWT = {
 
 
 # --------------------------------------------------
-# DJANGO AXES
+# AXES
 # --------------------------------------------------
 
 AXES_FAILURE_LIMIT = 5
@@ -300,7 +303,7 @@ ACCOUNT_EMAIL_VERIFICATION = "none"
 
 
 # --------------------------------------------------
-# INTERNATIONALIZATION
+# LANGUAGE
 # --------------------------------------------------
 
 LANGUAGE_CODE = "en-us"
@@ -323,7 +326,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
 STATICFILES_STORAGE = (
+
     "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 )
 
 
@@ -333,7 +338,11 @@ STATICFILES_STORAGE = (
 # --------------------------------------------------
 
 CORS_ALLOWED_ORIGINS = [
+
     "http://localhost:5173",
+
+    "https://identityhub-frontend.onrender.com",
+
 ]
 
 
@@ -344,7 +353,9 @@ CORS_ALLOWED_ORIGINS = [
 
 CSRF_TRUSTED_ORIGINS = [
 
-    # Add Render frontend later
+    "https://identityhub-frontend.onrender.com",
+
+    "https://identityhub-5ygq.onrender.com",
 
 ]
 
