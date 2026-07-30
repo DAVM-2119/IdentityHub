@@ -1,12 +1,11 @@
 import axios from "axios";
 
-export default axios.create({
-    baseURL: "https://identityhub-5ygq.onrender.com/api/",
+const api = axios.create({
+  baseURL: "https://identityhub-5ygq.onrender.com/api/",
 });
 
 // Add access token to every request
 api.interceptors.request.use((config) => {
-
   const token = localStorage.getItem("access");
 
   if (token) {
@@ -14,17 +13,13 @@ api.interceptors.request.use((config) => {
   }
 
   return config;
-
 });
-
 
 // Automatically refresh expired access token
 api.interceptors.response.use(
-
   (response) => response,
 
   async (error) => {
-
     const originalRequest = error.config;
 
     if (
@@ -33,29 +28,21 @@ api.interceptors.response.use(
       !originalRequest._retry &&
       !originalRequest.url.includes("token/refresh/")
     ) {
-
       originalRequest._retry = true;
 
       const refresh = localStorage.getItem("refresh");
 
       if (!refresh) {
-
         window.location.href = "/login";
-
         return Promise.reject(error);
-
       }
 
       try {
-
         const response = await axios.post(
-
-          "http://127.0.0.1:8000/api/token/refresh/",
-
+          "https://identityhub-5ygq.onrender.com/api/token/refresh/",
           {
             refresh,
           }
-
         );
 
         const newAccess = response.data.access;
@@ -67,30 +54,21 @@ api.interceptors.response.use(
           localStorage.setItem("refresh", newRefresh);
         }
 
-        originalRequest.headers.Authorization =
-          `Bearer ${newAccess}`;
+        originalRequest.headers.Authorization = `Bearer ${newAccess}`;
 
         return api(originalRequest);
-
-      }
-
-      catch (refreshError) {
-
+      } catch (refreshError) {
         localStorage.removeItem("access");
         localStorage.removeItem("refresh");
 
         window.location.href = "/login";
 
         return Promise.reject(refreshError);
-
       }
-
     }
 
     return Promise.reject(error);
-
   }
-
 );
 
 export default api;
