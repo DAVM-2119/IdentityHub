@@ -19,9 +19,8 @@ function GoogleLoginButton() {
 
     try {
 
-      const response = await axios.post(
-
-        "http://127.0.0.1:8000/api/google/",
+      const response =await axios.post(
+          "https://identityhub-5ygq.onrender.com/api/google/",
 
         {
           access_token: credentialResponse.credential,

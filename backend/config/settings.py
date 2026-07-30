@@ -333,12 +333,7 @@ STATICFILES_STORAGE = (
 # --------------------------------------------------
 
 CORS_ALLOWED_ORIGINS = [
-
     "http://localhost:5173",
-
-    # Add React Render URL later
-    # "https://your-frontend.onrender.com",
-
 ]
 
 

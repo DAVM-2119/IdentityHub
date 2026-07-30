@@ -1,9 +1,8 @@
 import axios from "axios";
 
-const api = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",
+export default axios.create({
+    baseURL: "https://identityhub-5ygq.onrender.com/api/",
 });
-
 
 // Add access token to every request
 api.interceptors.request.use((config) => {
