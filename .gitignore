@@ -1,4 +1,23 @@
-.env
-*.env
+# Environment files
 backend/.env
 frontend/.env
+
+# SQLite database
+backend/db.sqlite3
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+.env
+
+# Node
+node_modules/
+
+# Django static files
+staticfiles/
+
+# React build
+dist/
